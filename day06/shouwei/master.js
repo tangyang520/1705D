@@ -7,7 +7,6 @@ const server = http.createServer()
 
 // 获取 cpu 数量
 const cpus=require("os").cpus().length
-console.log(cpus)
 
 // 监听端口
 server.listen(3000)
