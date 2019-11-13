@@ -10,12 +10,14 @@ const static = require("koa-static")
 // 处理前端 post 请求携带的参数
 const bodyparser = require("koa-bodyparser")
 
-const router = require("koa-router")()
+const router = require("./router/index")
 
 let query = require("./db/index")
 
 // 处理静态资源
 app.use(static(path.join(process.cwd(),"./public")))
+
+app.use(bodyparser())
 
 // 处理路由
 app.use(router.routes())

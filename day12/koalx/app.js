@@ -51,7 +51,7 @@ router.post("/api/add",async (ctx,next)=>{
         }else{
             // 此用户不存在
             let data=await query("insert into userlist (username,password,address,phone,idcard) values (?,?,?,?,?)",[username,password,address,phone,idcard])
-            if(data.msg==="error"){
+            if(data==="error"){
                 ctx.body=error
             }else{
                 ctx.body={
