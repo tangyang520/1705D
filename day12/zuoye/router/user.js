@@ -1,10 +1,8 @@
 const router=require("koa-router")()
 
-let query = require("../db/index")
-
 // 查看
 router.get("/api/list",async ctx=>{
-    let data=await query("select * from shoplist")
+    let data=await ctx.mysql.query("select * from shoplist")
     ctx.body=data
 })
 
@@ -14,7 +12,7 @@ router.post("/api/add",async ctx=>{
     console.log(111)
     if(shopname && con){
         console.log(11)
-        let shop = await query("select * from shoplist where shopname=?",[shopname])
+        let shop = await ctx.mysql.query("select * from shoplist where shopname=?",[shopname])
         if(shop.length){
             console.log("11111")
             ctx.body={       
@@ -22,7 +20,7 @@ router.post("/api/add",async ctx=>{
                 msg:"此商品已存在"
             }
         }else{
-            let data = await query("insert into shoplist (shopname,descs,con) values (?,?,?)",[shopname,desc,con])
+            let data = await ctx.mysql.query("insert into shoplist (shopname,descs,con) values (?,?,?)",[shopname,desc,con])
             if(data==="error"){
                 ctx.body=error
             }else{
@@ -45,7 +43,7 @@ router.get("/api/del",async ctx=>{
     let {id}=ctx.query
     if(id || id===0){
         try{
-            await query("delete from shoplist where id=?",[id])
+            await ctx.mysql.query("delete from shoplist where id=?",[id])
             ctx.body={
                 code:1,
                 msg:"删除成功"
@@ -69,7 +67,7 @@ router.post("/api/edit",async ctx=>{
     let {shopname,desc,con,id}=ctx.request.body
     if(id && shopname && con){
         try{
-            await query("update shoplist set shopname=?,descs=?,con=? where id=?",[shopname,desc,con,id])
+            await ctx.mysql.query("update shoplist set shopname=?,descs=?,con=? where id=?",[shopname,desc,con,id])
             ctx.body={
                 code:1,
                 msg:"修改成功"
