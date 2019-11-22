@@ -1,0 +1,48 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  list-style-type: none;
+}
+#root,.App,html,body{
+  width: 100%;
+  height: 100%;
+}
+.login-page{
+  text-align: center;
+  line-height: 60px;
+}
+.main-page{
+  width: 100%;
+  height: 100%;
+}
+header{
+  width: 100%;
+  height: 80px;
+  border-bottom: 1px solid #ccc;
+  line-height: 80px;
+  text-align: center;
+}
+.main{
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+.main .left{
+  width: 200px;
+  border-right: 1px solid #ccc;
+  text-align: center;
+}
+.main .left a{
+  display: block;
+  text-decoration: none;
+  line-height: 60px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+.main .left a.active{
+  color:red;
+}
+.main .right{
+  fleX:1;
+}
